@@ -33,11 +33,16 @@ public class FileReader {
             Iterator<Row> iterator = datatypeSheet.iterator();
             DataFormatter df = new DataFormatter();
 
+           
+           
             
             List<Person> personList = new ArrayList<>();
+            Row currentRow = iterator.next();
             while (iterator.hasNext()) {
 
-                Row currentRow = iterator.next();
+            	
+                 
+                currentRow = iterator.next();
                 Person person = new Person();
                 
                 if (!df.formatCellValue(currentRow.getCell(0)).trim().isEmpty())

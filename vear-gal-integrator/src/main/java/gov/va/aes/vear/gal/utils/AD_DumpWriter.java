@@ -68,32 +68,34 @@ public class AD_DumpWriter {
 		// Write Data
 		Person outRecord = null;
 		Iterator<Person> outIterator = diffUserList.iterator();
-		int rowNumb = 2;
+		int rowNumb = 1;
 		while (outIterator.hasNext()) {
 			outRecord = outIterator.next();
-			XSSFRow row = sheet.createRow(rowNumb++);
 			
-			row.createCell(0).setCellValue(cleanUp(outRecord.getUserPrincipalName()));
-			row.createCell(1).setCellValue(cleanUp(outRecord.getsAMAccountName()));
-			row.createCell(2).setCellValue(cleanUp(outRecord.getDomain()));
-			
-			row.createCell(3).setCellValue(cleanUp(outRecord.getGivenName()));
-			row.createCell(4).setCellValue(cleanUp(outRecord.getFirstName()));
-			row.createCell(5).setCellValue(cleanUp(outRecord.getMiddleName()));
-			row.createCell(6).setCellValue(cleanUp(outRecord.getLastName()));
-			
-			row.createCell(7).setCellValue(cleanUp(outRecord.getTitle()));
-			row.createCell(8).setCellValue(cleanUp(outRecord.getEmail()));
-			
-			row.createCell(9).setCellValue(cleanUp(outRecord.getTelephoneNumber()));
-			row.createCell(10).setCellValue(cleanUp(outRecord.getMobile()));
-			row.createCell(11).setCellValue(cleanUp(outRecord.getStreetAddress()));
-			row.createCell(12).setCellValue(cleanUp(outRecord.getCity()));
-			row.createCell(13).setCellValue(cleanUp(outRecord.getState()));
-			row.createCell(14).setCellValue(cleanUp(outRecord.getPostalCode()));
-			
-			row.createCell(15).setCellValue(cleanUp(outRecord.getDepartment()));
-			
+			if(outRecord != null) {
+				XSSFRow row = sheet.createRow(rowNumb++);
+				
+				row.createCell(0).setCellValue(cleanUp(outRecord.getUserPrincipalName()));
+				row.createCell(1).setCellValue(cleanUp(outRecord.getsAMAccountName()));
+				row.createCell(2).setCellValue(cleanUp(outRecord.getDomain()));
+				
+				row.createCell(3).setCellValue(cleanUp(outRecord.getGivenName()));
+				row.createCell(4).setCellValue(cleanUp(outRecord.getFirstName()));
+				row.createCell(5).setCellValue(cleanUp(outRecord.getMiddleName()));
+				row.createCell(6).setCellValue(cleanUp(outRecord.getLastName()));
+				
+				row.createCell(7).setCellValue(cleanUp(outRecord.getTitle()));
+				row.createCell(8).setCellValue(cleanUp(outRecord.getEmail()));
+				
+				row.createCell(9).setCellValue(cleanUp(outRecord.getTelephoneNumber()));
+				row.createCell(10).setCellValue(cleanUp(outRecord.getMobile()));
+				row.createCell(11).setCellValue(cleanUp(outRecord.getStreetAddress()));
+				row.createCell(12).setCellValue(cleanUp(outRecord.getCity()));
+				row.createCell(13).setCellValue(cleanUp(outRecord.getState()));
+				row.createCell(14).setCellValue(cleanUp(outRecord.getPostalCode()));
+				
+				row.createCell(15).setCellValue(cleanUp(outRecord.getDepartment()));
+			}
 		}
 
 		// write this workbook to an Output stream.

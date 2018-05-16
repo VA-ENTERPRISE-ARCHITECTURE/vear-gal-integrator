@@ -21,8 +21,26 @@ public class SearchByEmailTask implements Task<Person, ADPersonRepository>{
 		if(personByEmail == null ) {
 			Person person = new Person();
 			person.setEmail(email);
+			person.setGivenName("");
+			person.setDomain("");
+			person.setsAMAccountName("");
+			person.setTitle("");
+			person.setDepartment("") ;
+			person.setTelephoneNumber("") ;
+			person.setStreetAddress("") ;
+			person.setCity("") ;
+			person.setPostalCode("");
 		}else {
-			System.out.println("Search completed for email: "+ email);
+			System.out.println(personByEmail.getGivenName()
+					+ " | "	+ personByEmail.getDomain()
+					+ " | " + personByEmail.getsAMAccountName()
+					+ " | " + personByEmail.getTitle()
+					+ " | " + personByEmail.getDepartment() 
+					+ " | " + personByEmail.getEmail() 
+					+ " | "	+ personByEmail.getTelephoneNumber() 
+					+ " | " + personByEmail.getStreetAddress() 
+					+ " | "	+ personByEmail.getCity() 
+					+ " | " + personByEmail.getPostalCode());
 		}
 		return personByEmail;
 	}

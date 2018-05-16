@@ -65,7 +65,7 @@ public class ADRecordsWriter {
 		// Write Data
 		Person outRecord = null;
 		Iterator<Person> outIterator = diffUserList.iterator();
-		int rowNumb = 2;
+		int rowNumb = 1;
 		while (outIterator.hasNext()) {
 			outRecord = outIterator.next();
 			XSSFRow row = sheet.createRow(rowNumb++);
