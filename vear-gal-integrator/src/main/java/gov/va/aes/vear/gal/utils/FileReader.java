@@ -37,12 +37,16 @@ public class FileReader {
            
             
             List<Person> personList = new ArrayList<>();
-            Row currentRow = iterator.next();
+            
             while (iterator.hasNext()) {
-
+            
+            	Row currentRow = iterator.next();
+            	 // display row number in the console.
+            	  System.out.println ("Row No.: " + currentRow.getRowNum ());
+            	  if(currentRow.getRowNum()==0 || currentRow.getRowNum()==1){
+            	   continue; //just skip the rows if row number is 0 or 1
+            	  }
             	
-                 
-                currentRow = iterator.next();
                 Person person = new Person();
                 
                 if (!df.formatCellValue(currentRow.getCell(0)).trim().isEmpty())
@@ -106,7 +110,12 @@ public class FileReader {
             List<Person> personList = new ArrayList<>();
             while (iterator.hasNext()) {
 
-                Row currentRow = iterator.next();
+				Row currentRow = iterator.next();
+				// display row number in the console.
+				System.out.println("Row No.: " + currentRow.getRowNum());
+				if (currentRow.getRowNum() == 0 ) {
+					continue; // just skip the rows if row number is 0 or 1
+				}
                 Person person = new Person();
                 
                 if (!df.formatCellValue(currentRow.getCell(0)).trim().isEmpty())

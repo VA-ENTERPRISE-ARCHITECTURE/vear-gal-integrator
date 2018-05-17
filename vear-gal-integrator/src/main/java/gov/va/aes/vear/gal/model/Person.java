@@ -28,10 +28,10 @@ public class Person {
 	
 	}
 	
-	public Person(BigDecimal stakeholderId, BigDecimal elementId) {
+	public Person(BigDecimal elementId, BigDecimal stakeholderId) {
 		super();
-		this.stakeholderId = stakeholderId;
 		this.elementId = elementId;
+		this.stakeholderId = stakeholderId;
 	}
 	
 	public BigDecimal getStakeholderId() {

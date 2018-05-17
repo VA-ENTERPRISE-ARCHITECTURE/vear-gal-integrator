@@ -16,6 +16,8 @@ public class Application {
 
 	@Autowired
 	MainAdRecordPullProcessor processor;
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

@@ -53,6 +53,7 @@ public class WaitingFuturesRunner<T, S> {
             latch.await(timeOut, timeUnit);
             logger.debug("complete... adding results");
             allDone.get().forEach(consolidatedResult::addResult);
+            this.executor.shutdown();
         } catch (final InterruptedException | ExecutionException e) {
             logger.error("Thread Error", e);
             throw new RuntimeException("Thread Error, could not complete processing", e);

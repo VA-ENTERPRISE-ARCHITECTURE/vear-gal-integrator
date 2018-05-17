@@ -66,35 +66,36 @@ public class ADRecordsWriter {
 		Person outRecord = null;
 		Iterator<Person> outIterator = diffUserList.iterator();
 		int rowNumb = 1;
+		
 		while (outIterator.hasNext()) {
 			outRecord = outIterator.next();
-			XSSFRow row = sheet.createRow(rowNumb++);
-			row.createCell(0).setCellValue(outRecord.getElementId().toPlainString());
-			row.createCell(1).setCellValue(outRecord.getStakeholderId().toPlainString());
-
-			row.createCell(2).setCellValue(outRecord.getUserPrincipalName());
-			row.createCell(3).setCellValue(outRecord.getsAMAccountName());
-			row.createCell(4).setCellValue(outRecord.getDomain());
-			
-			row.createCell(5).setCellValue(outRecord.getGivenName());
-			row.createCell(6).setCellValue(outRecord.getFirstName());
-			row.createCell(7).setCellValue(outRecord.getMiddleName());
-			row.createCell(8).setCellValue(outRecord.getLastName());
-			
-			row.createCell(9).setCellValue(outRecord.getTitle());
-			row.createCell(10).setCellValue(outRecord.getEmail());
-			
-			row.createCell(11).setCellValue(outRecord.getTelephoneNumber());
-			row.createCell(12).setCellValue(outRecord.getMobile());
-			row.createCell(13).setCellValue(outRecord.getStreetAddress());
-			row.createCell(14).setCellValue(outRecord.getCity());
-			row.createCell(15).setCellValue(outRecord.getState());
-			row.createCell(16).setCellValue(outRecord.getPostalCode());
-			
-			row.createCell(17).setCellValue(outRecord.getDepartment());
-			
+			if(outRecord != null) {
+				XSSFRow row = sheet.createRow(rowNumb++);
+				row.createCell(0).setCellValue(outRecord.getElementId().toPlainString());
+				row.createCell(1).setCellValue(outRecord.getStakeholderId().toPlainString());
+	
+				row.createCell(2).setCellValue(outRecord.getUserPrincipalName());
+				row.createCell(3).setCellValue(outRecord.getsAMAccountName());
+				row.createCell(4).setCellValue(outRecord.getDomain());
+				
+				row.createCell(5).setCellValue(outRecord.getGivenName());
+				row.createCell(6).setCellValue(outRecord.getFirstName());
+				row.createCell(7).setCellValue(outRecord.getMiddleName());
+				row.createCell(8).setCellValue(outRecord.getLastName());
+				
+				row.createCell(9).setCellValue(outRecord.getTitle());
+				row.createCell(10).setCellValue(outRecord.getEmail());
+				
+				row.createCell(11).setCellValue(outRecord.getTelephoneNumber());
+				row.createCell(12).setCellValue(outRecord.getMobile());
+				row.createCell(13).setCellValue(outRecord.getStreetAddress());
+				row.createCell(14).setCellValue(outRecord.getCity());
+				row.createCell(15).setCellValue(outRecord.getState());
+				row.createCell(16).setCellValue(outRecord.getPostalCode());
+				
+				row.createCell(17).setCellValue(outRecord.getDepartment());
+			}
 		}
-
 		// write this workbook to an Output stream.
 		File file = new File(getOutFileName());
 		file.getParentFile().mkdirs();

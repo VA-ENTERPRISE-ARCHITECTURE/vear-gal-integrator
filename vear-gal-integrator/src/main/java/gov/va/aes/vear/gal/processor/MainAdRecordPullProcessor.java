@@ -66,9 +66,9 @@ public class MainAdRecordPullProcessor {
 		
 		// write searched AD records to file
 		try {
-			dumpWriter.writeOutput(adPerons);
+			outputWriter.writeOutput(adPerons);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Writing Data to Excel Errored-out: "+ e.getMessage());
 			e.printStackTrace();
 		}
 
@@ -79,7 +79,7 @@ public class MainAdRecordPullProcessor {
 		
 		List<Task<Person, ADPersonRepository>> tasks = new ArrayList<>();
 		for (Person input : stakeholders) {
-			tasks.add(new SearchByEmailTask(input.getEmail()));
+			tasks.add(new SearchByEmailTask(input));
 		}
 		return tasks;
 	}
@@ -89,7 +89,7 @@ public class MainAdRecordPullProcessor {
 		
 		List<Task<Person, ADPersonRepository>> tasks = new ArrayList<>();
 		for (Person input : stakeholders) {
-			tasks.add(new SearchByVaUserNameTask(input.getsAMAccountName()));
+			tasks.add(new SearchByVaUserNameTask(input));
 		}
 		return tasks;
 	}

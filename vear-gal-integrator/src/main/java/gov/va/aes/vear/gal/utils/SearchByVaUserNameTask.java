@@ -7,21 +7,26 @@ import gov.va.aes.vear.gal.repositories.ADPersonRepository;
 
 public class SearchByVaUserNameTask implements Task<Person, ADPersonRepository>{
 
-	String sAMAccountName ;
+	Person vaUser ;
 	
-	public SearchByVaUserNameTask(String sAMAccountName) {
-		this.sAMAccountName = sAMAccountName;
+	public SearchByVaUserNameTask(Person input) {
+		this.vaUser = input;
 	}
 
 	@Override
 	public Person process(ADPersonRepository adRepo, CountDownLatch latch) {
 		latch.countDown();
-		System.out.println("Searching for sAMAccountName: "+ sAMAccountName);
-		Person personBySamAccountName = adRepo.getPersonById(sAMAccountName);
+		System.out.println("Searching for sAMAccountName: "+ vaUser.getsAMAccountName());
+		Person personBySamAccountName = null;
+		personBySamAccountName = adRepo.getPersonById(vaUser.getsAMAccountName());
+		
 		if(personBySamAccountName == null ) {
-			Person person = new Person();
-			person.setsAMAccountName(sAMAccountName);
+			personBySamAccountName = vaUser;
+			personBySamAccountName.setsAMAccountName("NOT_FOUND_IN_AD");
 		}
+			personBySamAccountName.setElementId(vaUser.getElementId());
+			personBySamAccountName.setStakeholderId(vaUser.getStakeholderId());
+		
 		return personBySamAccountName;
 	}
 
