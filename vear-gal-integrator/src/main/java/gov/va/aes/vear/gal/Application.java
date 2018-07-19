@@ -1,33 +1,21 @@
 package gov.va.aes.vear.gal;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-
-import gov.va.aes.vear.gal.processor.MainAdRecordPullProcessor;
-
-
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-public class Application {
+@EnableScheduling
+public class Application extends SpringBootServletInitializer {
 
-	@Autowired
-	MainAdRecordPullProcessor processor;
-	
-	
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	return application.sources(new Class[] { Application.class });
+    }
 
-	@Bean
-	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-		return args -> {
-			processor.process();		
-			
-		};
-	}
-
+    public static void main(String[] args) {
+	SpringApplication.run(Application.class, args);
+    }
 }

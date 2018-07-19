@@ -9,25 +9,25 @@ import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.core.support.LdapContextSource;
 
 @Configuration
-@EnableLdapRepositories(basePackages = "gov.va.aes.vear.gal.repositories", ldapTemplateRef = "cemLdapTemplate")
-public class CEM_ADConfig {
+@EnableLdapRepositories(basePackages = "gov.va.aes.vear.gal.repositories", ldapTemplateRef = "v21MedLdapTemplate")
+public class V21_MED_ADConfig {
 
 	@Autowired
 	Environment env;
 
 	@Bean
-	public LdapContextSource cemContextSource() {
+	public LdapContextSource v21MedContextSource() {
 		LdapContextSource contextSource = new LdapContextSource();
 		contextSource.setUrl(env.getRequiredProperty("ad.url"));
-		contextSource.setBase("dc=cem,dc=va,dc=gov");
+		contextSource.setBase("dc=v21,dc=med,dc=va,dc=gov");
 		contextSource.setUserDn(env.getRequiredProperty("ad.service.user"));
 		contextSource.setPassword(env.getRequiredProperty("ad.secret"));
 		contextSource.setReferral("follow");
 		return contextSource;
 	}
 
-	@Bean(name = "cemLdapTemplate")
-	public LdapTemplate cemLdapTemplate() {
-		return new LdapTemplate(cemContextSource());
+	@Bean(name = "v21MedLdapTemplate")
+	public LdapTemplate v21MedLdapTemplate() {
+		return new LdapTemplate(v21MedContextSource());
 	}
 }
