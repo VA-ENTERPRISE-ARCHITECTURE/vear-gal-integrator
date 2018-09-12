@@ -9,7 +9,7 @@ Summary of the Counts from VEAR GAL Integration Run on ${vearStatsInitPull.runDa
 <br>
 
 New Additions: <br> <br>
-Total Records Read from VEAR: ${vearStatsInitPull.vearRecordsRead}
+Total New Records Read from GAL: ${vearStatsInitPull.vearRecordsRead}
 <br>
 Total Records Populated with GAL Info: ${vearStatsInitPull.vearUpdatedRecords} <br>
 	<#if (vearStatsInitPull.vearUpdatedRecords != 0)> 
