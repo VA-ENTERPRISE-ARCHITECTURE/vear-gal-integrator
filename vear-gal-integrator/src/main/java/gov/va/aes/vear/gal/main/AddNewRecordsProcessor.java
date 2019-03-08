@@ -60,7 +60,7 @@ public class AddNewRecordsProcessor {
 	final List<Task<Person, ADPersonRepository>> taskList = setupSearchBySamAccountNameTasks(stakeholders);
 
 	final WaitingFuturesRunner<Person, ADPersonRepository> completableFuturesRunner = new WaitingFuturesRunner<>(
-		taskList, 1, 4, TimeUnit.SECONDS);
+		taskList, 5, 4, TimeUnit.SECONDS);
 	final PersonResults consolidatedResults = new PersonResults();
 
 	completableFuturesRunner.go(repository, consolidatedResults);
@@ -69,7 +69,7 @@ public class AddNewRecordsProcessor {
 
 	for (Person adPerson : adPerons) {
 	    if (adPerson != null) {// adPerson would be null if ldap search fails with exception
-		String phone = formatPhone.formatPhone(adPerson.getTelephoneNumber(), adPerson.getMobile());
+		String phone = formatPhone.formatPhone(adPerson.getTelephoneNumber());
 		adPerson.setTelephoneNumber(phone);
 		LOG.log(Level.FINE,
 			adPerson.getGivenName() + " | " + adPerson.getDistinguishedName() + " | "

@@ -9,7 +9,7 @@ Summary of the Counts from VEAR GAL Integration Run on ${vearStatsInitPull.runDa
 <br>
 
 New Additions: <br> <br>
-Total New Records Read from GAL: ${vearStatsInitPull.vearRecordsRead}
+Total New Records Read from VEAR: ${vearStatsInitPull.vearRecordsRead}
 <br>
 Total Records Populated with GAL Info: ${vearStatsInitPull.vearUpdatedRecords} <br>
 	<#if (vearStatsInitPull.vearUpdatedRecords != 0)> 
@@ -181,7 +181,10 @@ Total Records Updated: ${vearStatsCompare.vearUpdatedRecords} <br>
 		</#list>
 	</table>
 </#if>
-<br> Disabled Records: <br>
+</div>
+<br><br>
+<div>
+<br> Disabled Records: <br><br>
 Total Disabled Records Found = ${vearStatsCompare.vearDisableRecords} <br>
 <#if (vearStatsCompare.vearDisableRecords != 0)>	
 	 List of Disabled VEAR Accounts: <br>

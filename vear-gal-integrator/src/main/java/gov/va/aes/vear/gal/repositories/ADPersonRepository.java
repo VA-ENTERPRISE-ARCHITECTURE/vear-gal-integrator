@@ -245,6 +245,7 @@ public class ADPersonRepository implements InitializingBean {
 	String searchBase = domain.toLowerCase();
 
 	List<Person> results = null;
+	LOG.log(Level.INFO, "AD Search for " + sAMAccountName + " and searchBase :" + searchBase);
 
 	LdapQuery query = query().searchScope(SearchScope.SUBTREE).attributes(RETURN_ATTRIBUTES).where("sAMAccountType")
 		.is("805306368").and("sAMAccountName").is(sAMAccountName);
@@ -287,7 +288,7 @@ public class ADPersonRepository implements InitializingBean {
 	    person.setTitle(findAttrVal(attrs, "title"));
 	    person.setEmail(findAttrVal(attrs, "mail"));
 	    person.setTelephoneNumber(findAttrVal(attrs, "telephoneNumber"));
-	    person.setMobile(findAttrVal(attrs, "mobile"));
+	    // person.setMobile(findAttrVal(attrs, "mobile"));
 	    person.setStreetAddress(findAttrVal(attrs, "streetAddress"));
 	    person.setCity(findAttrVal(attrs, "l"));
 	    person.setState(findAttrVal(attrs, "st"));

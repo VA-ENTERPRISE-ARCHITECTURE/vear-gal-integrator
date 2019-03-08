@@ -16,7 +16,7 @@ public class Person {
     public String email; // mail
     public String title;
     public String telephoneNumber;
-    public String mobile;
+    // public String mobile;
     public String streetAddress;
     public String city; // l
     public String state; // st
@@ -121,13 +121,13 @@ public class Person {
 	this.telephoneNumber = telephoneNumber;
     }
 
-    public String getMobile() {
-	return mobile;
-    }
-
-    public void setMobile(String mobile) {
-	this.mobile = mobile;
-    }
+    // public String getMobile() {
+    // return mobile;
+    // }
+    //
+    // public void setMobile(String mobile) {
+    // this.mobile = mobile;
+    // }
 
     public String getStreetAddress() {
 	return streetAddress;

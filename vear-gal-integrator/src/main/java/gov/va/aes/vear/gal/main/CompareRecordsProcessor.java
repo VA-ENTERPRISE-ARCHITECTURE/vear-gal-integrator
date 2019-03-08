@@ -55,6 +55,11 @@ public class CompareRecordsProcessor {
 	for (Person stakeholderNotFound : stakeholdersNotFound) {
 	    adPeronsNotFound.add(stakeholderNotFound);
 	}
+	// Adding current records from Stakeholder class which are ou=Disabled group
+	List<Person> stakeholdersDisabled = stakeholderDao.getStakeholdersWithDisabledDomain();
+	for (Person stakeholderDisabled : stakeholdersDisabled) {
+	    adPeronsNotFound.add(stakeholderDisabled);
+	}
 	LOG.log(Level.INFO, "Begin Process ");
 	LOG.log(Level.INFO, "Total Records Read from Stakeholder table = " + stakeholders.size());
 	vearStats.setVearRecordsRead(stakeholders.size());
@@ -76,7 +81,7 @@ public class CompareRecordsProcessor {
 
 	for (Person adPerson : adPerons) {
 	    if (adPerson != null) {// adPerson would be null if ldap search fails with exception
-		String phone = formatPhone.formatPhone(adPerson.getTelephoneNumber(), adPerson.getMobile());
+		String phone = formatPhone.formatPhone(adPerson.getTelephoneNumber());
 		adPerson.setTelephoneNumber(phone);
 		LOG.log(Level.FINE,
 			adPerson.getGivenName() + " | " + adPerson.getDistinguishedName() + " | "

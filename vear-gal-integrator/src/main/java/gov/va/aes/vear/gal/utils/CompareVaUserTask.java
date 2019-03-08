@@ -65,22 +65,20 @@ public class CompareVaUserTask implements Task<Person, ADPersonRepository> {
 		|| !compare(userFromDb.getLastName(), userFromAd.getLastName())
 		|| !compare(userFromDb.getMiddleName(), userFromAd.getMiddleName())
 		|| !compare(userFromDb.getTitle(), userFromAd.getTitle())
-		|| !(comparePhone(userFromDb.getTelephoneNumber(), userFromAd.getTelephoneNumber())
-			|| comparePhone(userFromDb.getTelephoneNumber(), userFromAd.getMobile()));
+		|| !comparePhone(userFromDb.getTelephoneNumber(), userFromAd.getTelephoneNumber());
 	if (checkUserAttributesChanged) {
+	    LOG.log(Level.INFO, "Changes Found for " + userFromDb.getVaUserName() + " --> db record: "
+		    + userFromDb.getFirstName() + " | " + userFromDb.getLastName() + " | " + userFromDb.getMiddleName()
+		    + " | " + userFromDb.getTitle() + " | " + userFromDb.getTelephoneNumber() + ", Ad record: "
+		    + userFromAd.getFirstName() + " | " + userFromAd.getLastName() + " | " + userFromAd.getMiddleName()
+		    + " | " + userFromAd.getTitle() + " | " + userFromAd.getTelephoneNumber());
+	} else {
 	    LOG.log(Level.INFO,
-		    "Changes Found for " + userFromDb.getVaUserName() + " --> db record: " + userFromDb.getFirstName()
-			    + " | " + userFromDb.getLastName() + " | " + userFromDb.getMiddleName() + " | "
+		    "Changes-not Found for " + userFromDb.getVaUserName() + " --> db record: "
+			    + userFromDb.getFirstName() + " | " + userFromDb.getLastName() + " | "
 			    + userFromDb.getTitle() + " | " + userFromDb.getTelephoneNumber() + ", Ad record: "
 			    + userFromAd.getFirstName() + " | " + userFromAd.getLastName() + " | "
-			    + userFromAd.getMiddleName() + " | " + userFromAd.getTitle() + " | "
-			    + userFromAd.getTelephoneNumber() + " | " + userFromAd.getMobile());
-	} else {
-	    LOG.log(Level.INFO, "Changes-not Found for " + userFromDb.getVaUserName() + " --> db record: "
-		    + userFromDb.getFirstName() + " | " + userFromDb.getLastName() + " | " + userFromDb.getTitle()
-		    + " | " + userFromDb.getTelephoneNumber() + ", Ad record: " + userFromAd.getFirstName() + " | "
-		    + userFromAd.getLastName() + " | " + userFromAd.getTitle() + " | " + userFromAd.getTelephoneNumber()
-		    + " | " + userFromAd.getMobile());
+			    + userFromAd.getTitle() + " | " + userFromAd.getTelephoneNumber());
 
 	}
 	return checkUserAttributesChanged;

@@ -53,13 +53,13 @@ public class ADRecordsWriter {
 	header.createCell(10).setCellValue("Email");
 
 	header.createCell(11).setCellValue("Telephone Number");
-	header.createCell(12).setCellValue("Mobile Number");
-	header.createCell(13).setCellValue("Street Address");
-	header.createCell(14).setCellValue("City");
-	header.createCell(15).setCellValue("State");
-	header.createCell(16).setCellValue("Zip Code");
+	// header.createCell(12).setCellValue("Mobile Number");
+	header.createCell(12).setCellValue("Street Address");
+	header.createCell(13).setCellValue("City");
+	header.createCell(14).setCellValue("State");
+	header.createCell(15).setCellValue("Zip Code");
 
-	header.createCell(17).setCellValue("Department");
+	header.createCell(16).setCellValue("Department");
 
 	applyStyles(header, getHeaderStyle(wb));
 
@@ -89,13 +89,13 @@ public class ADRecordsWriter {
 		row.createCell(10).setCellValue(outRecord.getEmail());
 
 		row.createCell(11).setCellValue(outRecord.getTelephoneNumber());
-		row.createCell(12).setCellValue(outRecord.getMobile());
-		row.createCell(13).setCellValue(outRecord.getStreetAddress());
-		row.createCell(14).setCellValue(outRecord.getCity());
-		row.createCell(15).setCellValue(outRecord.getState());
-		row.createCell(16).setCellValue(outRecord.getPostalCode());
+		// row.createCell(12).setCellValue(outRecord.getMobile());
+		row.createCell(12).setCellValue(outRecord.getStreetAddress());
+		row.createCell(13).setCellValue(outRecord.getCity());
+		row.createCell(14).setCellValue(outRecord.getState());
+		row.createCell(15).setCellValue(outRecord.getPostalCode());
 
-		row.createCell(17).setCellValue(outRecord.getDepartment());
+		row.createCell(16).setCellValue(outRecord.getDepartment());
 
 	    }
 	}
@@ -157,7 +157,6 @@ public class ADRecordsWriter {
 	row.getCell(14).setCellStyle(style);
 	row.getCell(15).setCellStyle(style);
 	row.getCell(16).setCellStyle(style);
-	row.getCell(17).setCellStyle(style);
     }
 
     private String getOutFileName() {

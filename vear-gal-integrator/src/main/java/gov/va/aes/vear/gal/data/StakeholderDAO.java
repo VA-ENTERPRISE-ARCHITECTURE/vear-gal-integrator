@@ -41,6 +41,10 @@ public class StakeholderDAO {
 	return jdbcTemplate.query(STAKEHOLDER_WITH_NOT_FOUND_IN_AD, new StakeholderMapper());
     }
 
+    public List<Person> getStakeholdersWithDisabledDomain() {
+	return jdbcTemplate.query(STAKEHOLDER_WITH_DISABLED_DOMAIN, new StakeholderMapper());
+    }
+
     public boolean isVASIDBAccessible() {
 	int i = 0;
 	try {
@@ -99,7 +103,7 @@ public class StakeholderDAO {
 	    + "SUBSTR(ad_domain, REGEXP_INSTR(ad_domain, '(DC=[a-zA-Z0-9]*)')) as connection_domain, ad_domain"
 	    + " from ee.element_attr_c402 stakeholder "
 	    + " where ad_domain is not null and ad_domain NOT LIKE 'NOT_FOUND_IN_AD%'"
-	    + " and va_user_name not in ('LindaFerroNARA', 'vacorothk', 'RobYoos', 'vaaacmaratm', 'vaaacwilliw', 'vacoWinteJ', 'VBAROAReynoR', 'VHAHINHiggiC', 'vaaitcpechlb', 'VHAISDWARKP', 'vhahacsitlet')"
+	    + " and va_user_name not in ('VAFSCBRUNINW', 'LINDAFERRONARA', 'VHAEASHOPKIT1', 'ROBYOOS', 'VAAACWILLIW', 'VHASPTDESORD', 'VAAACCOBBA', 'VACODIANET', 'VACOKARANK', 'VHAISLBOURGT', 'VHALITHOE', 'VAFSCMOSCHD', 'VACOGADDIW')"
 	    + " and email_type = 1565" + " order by connection_domain, last_name, first_name";
 
     private static String STAKEHOLDER_WITHOUT_DOMAIN_QUERY = "select element_id, stakeholder_id, va_user_name,first_name, "
@@ -114,6 +118,10 @@ public class StakeholderDAO {
 
     private static String STAKEHOLDER_WITH_NOT_FOUND_IN_AD = "select element_id, stakeholder_id, va_user_name,first_name, middle_initial,last_name, suffix, title, email, phone, '' as connection_domain, ad_domain"
 	    + " from ee.element_attr_c402 stakeholder where ad_domain LIKE 'NOT_FOUND_IN_AD%'"
-	    + " and va_user_name not in ('LindaFerroNARA', 'vacorothk', 'RobYoos', 'vaaacmaratm', 'vaaacwilliw', 'vacoWinteJ', 'VBAROAReynoR', 'VHAHINHiggiC', 'vaaitcpechlb', 'VHAISDWARKP', 'vhahacsitlet')"
-	    + " and email_type = 1565";
+	    + " and va_user_name not in ('VAFSCBRUNINW', 'LINDAFERRONARA', 'VHAEASHOPKIT1', 'ROBYOOS', 'VAAACWILLIW', 'VHASPTDESORD', 'VAAACCOBBA', 'VACODIANET', 'VACOKARANK', 'VHAISLBOURGT', 'VHALITHOE', 'VAFSCMOSCHD', 'VACOGADDIW')"
+	    + " and email_type = 1565 order by stakeholder_id";
+
+    private static String STAKEHOLDER_WITH_DISABLED_DOMAIN = "select element_id, stakeholder_id, va_user_name,first_name, middle_initial,last_name, suffix, title, email, phone, \r\n"
+	    + "'' as connection_domain, ad_domain from ee.element_attr_c402 stakeholder where \r\n"
+	    + "ad_domain like '%OU=Disabled%' and email_type = 1565 order by stakeholder_id";
 }
